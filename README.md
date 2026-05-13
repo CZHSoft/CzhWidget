@@ -2,20 +2,10 @@
 
 > 专业的通信监控与协议分析工具
 
+[English](README_EN.md)
+
 CzhWidget 是一款基于 Qt 6 开发的现代化通信监控与协议分析桌面应用程序，提供串口、网络通信实时监控、多协议解析、数据可视化等功能。
 
-
-## 📋 目录
-
-- [功能特性](#功能特性)
-- [技术栈](#技术栈)
-- [快速开始](#快速开始)
-- [项目结构](#项目结构)
-- [使用说明](#使用说明)
-- [开发指南](#开发指南)
-- [贡献指南](#贡献指南)
-- [许可证](#许可证)
-- [联系方式](#联系方式)
 
 ## ✨ 功能特性
 
@@ -81,7 +71,7 @@ CzhWidget 是一款基于 Qt 6 开发的现代化通信监控与协议分析桌�
 
 1. **克隆项目**
 ```bash
-git clone https://github.com/CzhWidget/CzhWidget.git
+git clone https://github.com/CZHsoft/CzhWidget.git
 cd CzhWidget
 ```
 

@@ -2,20 +2,9 @@
 
 > Professional Communication Monitoring and Protocol Analysis Tool
 
+[中文](README.md)
+
 CzhWidget is a modern communication monitoring and protocol analysis desktop application developed based on Qt 6. It provides real-time monitoring of serial port and network communications, multi-protocol parsing, data visualization and other features.
-
-
-## 📋 Table of Contents
-
-- [Features](#features)
-- [Tech Stack](#tech-stack)
-- [Quick Start](#quick-start)
-- [Project Structure](#project-structure)
-- [Usage](#usage)
-- [Development Guide](#development-guide)
-- [Contributing](#contributing)
-- [License](#license)
-- [Contact](#contact)
 
 ## ✨ Features
 
