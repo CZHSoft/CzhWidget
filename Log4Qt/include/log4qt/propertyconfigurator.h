@@ -1,0 +1,135 @@
+/******************************************************************************
+ *
+ * This file is part of Log4Qt library.
+ *
+ * Copyright (C) 2007 - 2026 Log4Qt contributors
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ ******************************************************************************/
+
+#ifndef LOG4QT_PROPERTYCONFIGURATOR_H
+#define LOG4QT_PROPERTYCONFIGURATOR_H
+
+#include "log4qtshared.h"
+#include "appender.h"
+
+#include <QHash>
+
+class QSettings;
+
+namespace Log4Qt
+{
+
+class ListAppender;
+class Logger;
+class Properties;
+class LoggerRepository;
+
+/*!
+ * \brief The class PropertyConfigurator allows the configuration of the
+ *        package from a Log4j2-style properties file.
+ *
+ * \note All the functions declared in this class are thread-safe.
+ */
+class LOG4QT_EXPORT PropertyConfigurator
+{
+public:
+    PropertyConfigurator() {}
+
+private:
+    Q_DISABLE_COPY_MOVE(PropertyConfigurator)
+
+public:
+    /*!
+     * \sa ConfiguratorHelper::configureError()
+     */
+    bool doConfigure(const Properties &properties,
+                     LoggerRepository *loggerRepository = nullptr);
+
+    /*!
+     * \sa ConfiguratorHelper::configureError()
+     */
+    bool doConfigure(const QString &configFileName,
+                     LoggerRepository *loggerRepository = nullptr);
+
+    /*!
+     * Reads the configuration data from the QSettings object
+     * \a settings.
+     *
+     * \sa \ref Properties::load(const QSettings &) "Properties::load()",
+     *     ConfiguratorHelper::configureError()
+     */
+    bool doConfigure(const QSettings &settings,
+                     LoggerRepository *loggerRepository = nullptr);
+
+
+    /*!
+     * \sa ConfiguratorHelper::configureError()
+     */
+    static bool configure(const Properties &properties);
+
+    /*!
+     * \sa ConfiguratorHelper::configureError()
+     */
+    static bool configure(const QString &configFilename);
+
+    /*!
+     * Reads the configuration data from the QSettings object
+     * \a settings.
+     *
+     * \sa \ref doConfigure(const QSettings &, LoggerRepository *) "doConfigure()",
+     *     \ref Properties::load(const QSettings &) "Properties::load()",
+     *     ConfiguratorHelper::configureError()
+     */
+    static bool configure(const QSettings &settings);
+
+    /*!
+     * \sa ConfiguratorHelper::configureError(),
+     *     ConfiguratorHelper::configurationFile()
+     */
+    static bool configureAndWatch(const QString &configFilename);
+
+private:
+    void configureFromFile(const QString &configFileName,
+                           LoggerRepository *loggerRepository);
+    void configureFromProperties(const Properties &properties,
+                                 LoggerRepository *loggerRepository);
+    void configureFromSettings(const QSettings &settings,
+                               LoggerRepository *loggerRepository);
+    void configureGlobalSettings(const Properties &properties,
+                                 LoggerRepository *loggerRepository) const;
+    void configureAppenders(const Properties &properties);
+    void configureRootLogger(const Properties &properties,
+                             LoggerRepository *loggerRepository);
+    void configureLoggers(const Properties &properties,
+                          LoggerRepository *loggerRepository);
+    void setProperties(const Properties &properties,
+                       const QString &prefix,
+                       const QStringList &exclusion,
+                       QObject *object) const;
+    void startCaptureErrors();
+    bool stopCaptureErrors();
+
+    static QStringList extractAliases(const Properties &properties,
+                                      const QString &prefix);
+    static Properties translateLegacyProperties(const Properties &properties);
+
+private:
+    AppenderSharedPtr mpConfigureErrors;
+    QHash<QString, AppenderSharedPtr> mAppenderRegistry;
+};
+
+} // namespace Log4Qt
+
+#endif // LOG4QT_PROPERTYCONFIGURATOR_H

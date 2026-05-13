@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/i18n">
+        <file>CzhWidget_en.qm</file>
+        <file>CzhWidget_zh_CN.qm</file>
+        <file>CzhWidget_ko_KR.qm</file>
+        <file>CzhWidget_ja_JP.qm</file>
+    </qresource>
+</RCC>

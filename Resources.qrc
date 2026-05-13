@@ -1,0 +1,10 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Resources/pic/battery_cover.png</file>
+        <file>Resources/pic/daoren_cover.png</file>
+        <file>Resources/pic/tracking_cover.png</file>
+        <file>Resources/pic/background.jpg</file>
+        <file>Resources/pic/logo.ico</file>
+        <file>Resources/pic/logo.png</file>
+    </qresource>
+</RCC>
